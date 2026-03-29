@@ -30,7 +30,9 @@ Steps:
 (May need to download miniconda before this)
 (Need to download Python pip install (in terminal write: sudo apt-get install python) )
 
-!!! WHAT I RAN IN LINUX TERMINAL: !!!
+### --- ### --- ### --- ###
+
+- WHAT I RAN IN LINUX TERMINAL:
   # bioconda setup
   - conda config --add channels defaults
   - conda config --add channels conda-forge
