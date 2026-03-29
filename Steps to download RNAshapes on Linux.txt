@@ -1,0 +1,54 @@
+(link:https://github.com/dmaticzka/GraphProt/blob/master/.travis.yml)
+
+( 
+(Not needed maybe)
+language: python
+python: "3.6"
+install:
+  - sudo apt-get update
+  # We do this conditionally because it saves us some downloading if the
+  # version is the same.
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+  # create conda environment
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+  - source activate test-environment
+)
+
+Steps:
+(May need to download miniconda before this)
+(Need to download Python pip install (in terminal write: sudo apt-get install python) )
+
+!!! WHAT I RAN IN LINUX TERMINAL: !!!
+  # bioconda setup
+  - conda config --add channels defaults
+  - conda config --add channels conda-forge
+  - conda config --add channels bioconda
+
+  # setup general python testing
+  - conda install -q pytest scripttest
+
+  # setup for GraphProt (RNAshapes installation)
+  - conda install -q gcc libgcc rnashapes==2.1.6 weblogo libsvm make r-plyr perl perl-getopt-long gawk libcxx zlib coreutils r-prroc perl-ipc-system-simple
+
+
+### --- ### --- ### --- ###
+
+- After installing, what I ran in the terminal to generate the RNA shapes
+
+(txt file should be placed inside miniconda3)
+
+# My command for RNAshapes:
+run cd miniconda3 first then run:
+while IFS= read -r line; do  /home/(your_username)/miniconda3/bin/RNAshapes -l -t 5 -D "$line"; done < natural_L20_subopt1 >Shape_Lvl5_subopt1_natural_L20.txt
