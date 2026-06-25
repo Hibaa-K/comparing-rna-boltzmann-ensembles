@@ -22,7 +22,7 @@ for line in lines:
     mfe = fc.mfe()                                    # get mfe structure of an rna seq
     op.write(mfe[0]+'\n')                             # write mfe seq to seperate file
     
-    delta = 500  
+    delta = 1000  
     subopt_structures = fc.subopt(delta,1)            # compute suboptimal structures within delta energy range
     
     while len(subopt_structures) < 5 and delta<=2000: # make sure to generate at least 5 suboptimal structures
