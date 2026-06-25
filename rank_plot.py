@@ -17,7 +17,7 @@ def get_subopt(sequence):
     fc = RNA.fold_compound(sequence)                    
     mfe_structure, mfe_energy = fc.mfe()                 # get the mfe structure of a seq and its free energy
     
-    delta = 500                                          # 500 = 5 kcal/mol (since delta * 0.01 kcal/mol)
+    delta = 1000                                         # 1000 = 10 kcal/mol (since delta * 0.01 kcal/mol)
     subopts = fc.subopt(delta,1)                         # generate suboptimal structures within the given delta energy range
     subopt_structures = []
 
