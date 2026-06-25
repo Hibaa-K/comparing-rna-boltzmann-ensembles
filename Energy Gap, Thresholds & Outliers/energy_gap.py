@@ -15,12 +15,8 @@ for line in lines:
     fc = RNA.fold_compound(sequence)
     mfe_structure, mfe_energy = fc.mfe()            # get mfe structure of rna seq and its free energy
     
-    delta = 500  
+    delta = 1000  
     subopt_structures = fc.subopt(delta, 1)         # compute suboptimal structures within delta energy range
-    
-    while len(subopt_structures)<2 and delta<1000:  # make sure there are at least 2 suboptimal structures 
-        delta+=200
-        subopt_structures = fc.subopt(delta, 1)
     
     if subopt_structures[0].structure != mfe_structure or len(subopt_structures)==1: 
         energy_gap = subopt_structures[0].energy - mfe_energy  # use first subopt structure generated to calculate energy gap 
