@@ -14,7 +14,7 @@ def get_subopt(sequence):
     fc = RNA.fold_compound(sequence)                    
     mfe_structure, mfe_energy = fc.mfe()    # get the mfe structure of a seq and its free energy
     
-    delta = 500                             # 500 = 5 kcal/mol (since delta * 0.01 kcal/mol)
+    delta = 1000                             #1000 = 10 kcal/mol (since delta * 0.01 kcal/mol)
     subopts = fc.subopt(delta,1)            # generate suboptimal structures within the given delta energy range
     subopt_structures = []
 
@@ -50,8 +50,8 @@ def hamming_distance(seq1, seq2):          # calculate hamming distance between 
 with open("natural_L20_seq_unique.txt",'r') as inp: lines1=inp.readlines()
 sequences_nat = [line[:-1] for line in lines1]
 
-sample_size=10000
-rna_sample = random.sample(sequences_nat, sample_size)   # create a sample of 10,000 sequences
+sample_size=1000
+rna_sample = random.sample(sequences_nat, sample_size)   # create a sample of 1,000 sequences
 
 tot_count=0
 distances=[]
@@ -93,11 +93,11 @@ import numpy as np
 lengths = np.array([20, 30, 45, 60, 100, 150])  # rna lengths used
 
 # Mean Hamming distances (gotten from the code above)
-natural_mean = np.array([3.3, 6.1, 6.7, 10.6, 16.6, 24.4])
-random_mean  = np.array([3.2, 5.6, 9.3, 12.8, 21.5, 32.0])
+natural_mean = np.array([3.27, 5.90, 7.03, 11.19, 18.08, 24.4])
+random_mean  = np.array([3.32, 5.75, 9.47, 13.35, 23.64, 32.0])
 # Standard deviations
-natural_std = np.array([3.7, 5.8, 6.6, 10.0, 14.1, 18.6])
-random_std  = np.array([3.7, 5.5, 8.2, 10.5, 15.7, 21.7])
+natural_std = np.array([3.69, 5.72, 6.64, 10.31, 15.12, 18.6])
+random_std  = np.array([3.65, 5.53, 8.40, 10.57, 15.99, 21.7])
 
 # Horizontal offset for visibility 
 delta = 1
