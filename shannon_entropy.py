@@ -10,10 +10,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # 1. Function to compute Shannon entropy for an rna sequence
-def compute_shannon_entropy(seq, delta=500, exclude_mfe=False):
+def compute_shannon_entropy(seq, delta=1000, exclude_mfe=False):
     fc = RNA.fold_compound(seq)
     mfe_structure, mfe_energy = fc.mfe()    # get the mfe structure of rna and its free energy
-    subopt_structs = fc.subopt(delta, 1)    # generate its suboptimal sturctures within delta energy range of 5 kcal/mol
+    subopt_structs = fc.subopt(delta, 1)    # generate its suboptimal sturctures within delta energy range of 10 kcal/mol
 
     energies = []
     if subopt_structs[0].structure!=mfe_structure and exclude_mfe==False: # include the mfe structure of the seq
